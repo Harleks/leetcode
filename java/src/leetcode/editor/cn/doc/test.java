@@ -30,6 +30,11 @@ public class test {
         System.out.println(c+","+d);
 
     }
+    @Test
+    public void  test2(){
+        char a = '\0';
+        System.out.println(a);
+    }
 
     void swap1(int[] nums, int a, int b) {
         nums[a] ^= nums[b];

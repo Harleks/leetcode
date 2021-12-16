@@ -54,26 +54,33 @@ public class JuZhenZhongDeLuJingLcof {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
-        char[][] board;
         char[] words;
 
         public boolean exist(char[][] board, String word) {
             this.words = word.toCharArray();
-            this.board = board;
             for (int i = 0; i < board.length; i++) {
                 for (int j = 0; j < board[0].length; j++) {
-                    dfs(i, j);
+                    //注意不能写成下一行：当dfs返回false时此函数不能直接返回 应继续算下一个点
+                    //return (dfs(i, j, 0, board));
+                    if (dfs(i, j, 0, board))
+                        return true;
                 }
             }
-
             return false;
         }
 
-        void dfs(int i, int j) {
-
+        boolean dfs(int i, int j, int length, char[][] board) {
+            //只有当每个字符都匹配上才会到下一层 所以不会出现层数超过字符串长度的情况
+            //if (length > words.length - 1) return false;
+            if (i < 0 || i >= board.length || j < 0 || j >= board[0].length) return false;
+            if (board[i][j] != words[length]) return false;
+            if (length == words.length - 1) return true;
+            board[i][j] = '\0';
+            boolean result = dfs(i + 1, j, length + 1, board) || dfs(i - 1, j, length + 1, board)
+                    || dfs(i, j + 1, length + 1, board) || dfs(i, j - 1, length + 1, board);
+            board[i][j] = words[length];
+            return result;
         }
-
-
     }
 //leetcode submit region end(Prohibit modification and deletion)
 
