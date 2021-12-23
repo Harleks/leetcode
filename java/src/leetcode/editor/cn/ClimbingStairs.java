@@ -25,7 +25,11 @@
 
   
   package leetcode.editor.cn;
-  public class ClimbingStairs{
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
+public class ClimbingStairs{
       public static void main(String[] args) {
            Solution solution = new ClimbingStairs().new Solution();
       }
