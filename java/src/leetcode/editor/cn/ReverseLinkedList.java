@@ -59,7 +59,8 @@ public class ReverseLinkedList {
      * ListNode(int val, ListNode next) { this.val = val; this.next = next; }
      * }
      */
-    class Solution {
+    //双指针
+    /*class Solution {
         public ListNode reverseList(ListNode head) {
             ListNode pre = null;
             ListNode cur = head;
@@ -70,6 +71,19 @@ public class ReverseLinkedList {
                 cur = temp;
             }
             return pre;
+        }
+    }*/
+    //递归
+    class Solution {
+        public ListNode reverseList(ListNode head) {
+            return reverse(null, head);
+        }
+
+        ListNode reverse(ListNode pre, ListNode cur) {
+            if (cur == null) return pre;
+            ListNode temp = cur.next;
+            cur.next = pre;
+            return reverse(cur, temp);
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
